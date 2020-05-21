@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pushd `dirname $0`
+cmake -D CONTEST_NAME=$1 -P ../scripts/add_contest.cmake
+popd
