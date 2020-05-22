@@ -1,0 +1,38 @@
+# Arg: EXECUTABLE_FILE
+# Arg: SAMPLE_ROOT
+# Arg: SAMPLE
+
+set(SAMPLE_INPUT ${SAMPLE_ROOT}/${SAMPLE}.in)
+set(SAMPLE_OUTPUT ${SAMPLE_ROOT}/${SAMPLE}.out)
+set(RESULT_OUTPUT ${SAMPLE_ROOT}/${SAMPLE}.result)
+set(RESULT_DIFF ${SAMPLE_ROOT}/${SAMPLE}.result.diff)
+
+file(REMOVE ${RESULT_OUTPUT})
+file(REMOVE ${RESULT_DIFF})
+
+execute_process(COMMAND ${EXECUTABLE_FILE}
+        INPUT_FILE ${SAMPLE_INPUT}
+        OUTPUT_FILE ${RESULT_OUTPUT}
+        ERROR_VARIABLE EXECUTION_ERROR
+        RESULT_VARIABLE EXECUTION_RESULT)
+
+if (NOT EXECUTION_RESULT EQUAL "0")
+    message(SEND_ERROR ${EXECUTION_ERROR})
+    message(FATAL_ERROR "Sample ${SAMPLE}: Run Error")
+endif()
+
+execute_process(COMMAND diff -y ${RESULT_OUTPUT} ${SAMPLE_OUTPUT}
+        OUTPUT_VARIABLE DIFF_OUTPUT
+        RESULT_VARIABLE DIFF_RESULT)
+
+if (NOT DIFF_RESULT EQUAL "0")
+    file(WRITE ${RESULT_DIFF} ${DIFF_OUTPUT})
+    message(SEND_ERROR "Sample ${SAMPLE}: Wrong Answer")
+    string(LENGTH ${DIFF_OUTPUT} DIFF_LENGTH)
+    if (DIFF_LENGTH LESS "1000")
+        message(${DIFF_OUTPUT})
+    else()
+        message("See ${RESULT_DIFF}")
+    endif()
+endif()
+
