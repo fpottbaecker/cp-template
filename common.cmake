@@ -29,5 +29,6 @@ macro(add_sample_tests TASK_NAME)
                 -D SAMPLE_ROOT=${CMAKE_CURRENT_LIST_DIR}/samples
                 -D SAMPLE=${SAMPLE}
                 -P ${SCRIPT_ROOT}/test/compare_sample.cmake)
+        set_tests_properties(${TASK_NAME}/sample-${SAMPLE} PROPERTIES TIMEOUT 2)
     endforeach()
 endmacro()
