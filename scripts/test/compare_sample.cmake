@@ -21,7 +21,7 @@ if (NOT EXECUTION_RESULT EQUAL "0")
     message(FATAL_ERROR "Sample ${SAMPLE}: Run Error")
 endif()
 
-execute_process(COMMAND diff -y ${RESULT_OUTPUT} ${SAMPLE_OUTPUT}
+execute_process(COMMAND diff -Bbyd --left-column ${RESULT_OUTPUT} ${SAMPLE_OUTPUT}
         OUTPUT_VARIABLE DIFF_OUTPUT
         RESULT_VARIABLE DIFF_RESULT)
 
