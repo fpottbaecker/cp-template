@@ -4,7 +4,7 @@ set(TEMPLATE_DIR ${CMAKE_CURRENT_LIST_DIR}/../templates)
 set(TASK_DIR ${CMAKE_CURRENT_SOURCE_DIR}/${TASK_NAME})
 
 # create directory
-make_directory(${TASK_DIR})
+file(COPY ${TEMPLATE_DIR}/task/ DESTINATION ${TASK_DIR})
 
 # copy template
 file(COPY ${TEMPLATE_DIR}/template.cpp DESTINATION ${TASK_DIR})
