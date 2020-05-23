@@ -20,15 +20,16 @@ if (CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 macro(add_sample_tests TASK_NAME)
+    add_test(NAME ${TASK_NAME}/build
+            COMMAND ${CMAKE_COMMAND} --build ${CMAKE_CURRENT_BINARY_DIR} --target ${TASK_NAME})
+    set_tests_properties(${TASK_NAME}/build PROPERTIES FIXTURES_SETUP ${TASK_NAME})
     file(GLOB SAMPLES RELATIVE ${CMAKE_CURRENT_LIST_DIR}/samples samples/*.in)
     foreach(SAMPLE_FILE IN LISTS SAMPLES)
         string(REPLACE .in "" SAMPLE ${SAMPLE_FILE})
-        add_test(NAME ${TASK_NAME}/sample-${SAMPLE}
-                COMMAND ${CMAKE_COMMAND}
-                -D EXECUTABLE_FILE=${CMAKE_CURRENT_BINARY_DIR}/${TASK_NAME}
-                -D SAMPLE_ROOT=${CMAKE_CURRENT_LIST_DIR}/samples
-                -D SAMPLE=${SAMPLE}
-                -P ${SCRIPT_ROOT}/test/compare_sample.cmake)
-        set_tests_properties(${TASK_NAME}/sample-${SAMPLE} PROPERTIES TIMEOUT 2)
+        add_test(NAME ${TASK_NAME}/sample-${SAMPLE} COMMAND
+                ${SCRIPT_ROOT}/test/perform_test.sh ${CMAKE_CURRENT_BINARY_DIR}/${TASK_NAME} ${CMAKE_CURRENT_LIST_DIR}/samples ${SAMPLE})
+        set_tests_properties(${TASK_NAME}/sample-${SAMPLE} PROPERTIES
+                TIMEOUT 2
+                FIXTURES_REQUIRED ${TASK_NAME})
     endforeach()
 endmacro()

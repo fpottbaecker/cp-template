@@ -6,7 +6,9 @@ set(SAMPLE_INPUT ${SAMPLE_ROOT}/${SAMPLE}.in)
 set(SAMPLE_OUTPUT ${SAMPLE_ROOT}/${SAMPLE}.out)
 set(RESULT_OUTPUT ${SAMPLE_ROOT}/${SAMPLE}.result)
 set(RESULT_DIFF ${SAMPLE_ROOT}/${SAMPLE}.result.diff)
+set(RESULT_ERROR ${SAMPLE_ROOT}/${SAMPLE}.result.err)
 
+file(REMOVE ${RESULT_ERROR})
 file(REMOVE ${RESULT_OUTPUT})
 file(REMOVE ${RESULT_DIFF})
 
@@ -17,8 +19,10 @@ execute_process(COMMAND ${EXECUTABLE_FILE}
         RESULT_VARIABLE EXECUTION_RESULT)
 
 if (NOT EXECUTION_RESULT EQUAL "0")
-    message(SEND_ERROR ${EXECUTION_ERROR})
-    message(FATAL_ERROR "Sample ${SAMPLE}: Run Error")
+    file(WRITE ${RESULT_ERROR} "EXIT CODE: ${EXECUTION_RESULT}\n\n")
+    file(APPEND ${RESULT_ERROR} ${EXECUTION_ERROR})
+    message("Run Error")
+    execute_process(COMMAND ${CMAKE_CURRENT_LIST_DIR}/patricide.sh)
 endif()
 
 execute_process(COMMAND diff -Bbyd ${RESULT_OUTPUT} ${SAMPLE_OUTPUT}
