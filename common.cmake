@@ -29,7 +29,7 @@ macro(add_sample_tests TASK_NAME)
         add_test(NAME ${TASK_NAME}/sample-${SAMPLE} COMMAND
                 ${SCRIPT_ROOT}/test/perform_test.sh ${CMAKE_CURRENT_BINARY_DIR}/${TASK_NAME} ${CMAKE_CURRENT_LIST_DIR}/samples ${SAMPLE})
         set_tests_properties(${TASK_NAME}/sample-${SAMPLE} PROPERTIES
-                TIMEOUT 2
+                TIMEOUT 5
                 FIXTURES_REQUIRED ${TASK_NAME})
     endforeach()
 endmacro()
