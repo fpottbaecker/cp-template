@@ -1,0 +1,7 @@
+#!/bin/bash
+
+pushd `dirname $0`
+touch samples/$1.in
+touch samples/$1.out
+touch CMakeLists.txt
+popd
