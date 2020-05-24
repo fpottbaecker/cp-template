@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pushd `dirname $0`
+cmake -D TASK_NAME=$1 -P ../../scripts/add_task.cmake
+popd

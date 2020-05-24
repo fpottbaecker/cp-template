@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pushd `dirname $0`
+cmake -P ../../scripts/load_tasks.cmake
+popd
