@@ -2,15 +2,16 @@
 
 This is a mostly platform independent template, most scripts are written for CMake, which is required as build system.
 
-## Setup
+## Usage
 
-* Change project name in root `CMakeLists.txt`
-* Run `contests/add_contest NAME`
-* Then, either
+1. Change project name in root `CMakeLists.txt`
+2. Run CMake, e.g. via `cmake -B cmake-build-debug .` (automatically done by CLion)
+3. Run `contests/add_contest NAME`
+4. Then, either
     * Download `samples-TASK.zip` files and run `contest/NAME/load_tasks`, or
     * Run `contest/NAME/add_task TASK`
-* Write code (this is the important part)
-* Run `ctest` in the tasks cmake binary directory to test it
+5. Write code (this is the important part)
+6. Run `ctest` in the tasks cmake binary directory (`cmake-build-debug/contests/NAME/TASK` if configured according to step 2) to test it
 
 ## Features
 
