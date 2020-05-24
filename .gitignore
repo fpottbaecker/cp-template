@@ -5,6 +5,9 @@
 # CLion CMake
 cmake-build-*/
 
+# NOTE: This is technically an executable file pattern, but samples also use it
+# *.out
+
 # Created by https://www.gitignore.io/api/c++,linux,macos,cmake,windows
 # Edit at https://www.gitignore.io/?templates=c++,linux,macos,cmake,windows
 
@@ -39,7 +42,7 @@ cmake-build-*/
 
 # Executables
 *.exe
-*.out
+# *.out
 *.app
 
 ### CMake ###
