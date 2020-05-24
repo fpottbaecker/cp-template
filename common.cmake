@@ -19,6 +19,11 @@ if (CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     endif()
 endif()
 
+macro(create_task TASK_NAME)
+    add_executable(${TASK_NAME} ${CMAKE_CURRENT_LIST_DIR}/${TASK_NAME}.cpp)
+    add_sample_tests(${TASK_NAME})
+endmacro()
+
 macro(add_sample_tests TASK_NAME)
     add_test(NAME ${TASK_NAME}/build
             COMMAND ${CMAKE_COMMAND} --build ${CMAKE_CURRENT_BINARY_DIR} --target ${TASK_NAME})
