@@ -25,7 +25,7 @@ macro(add_sample_tests TASK_NAME)
                     -P ${SCRIPT_ROOT}/test/perform_test.cmake)
         endif ()
         set_tests_properties(${TASK_NAME}/sample-${SAMPLE} PROPERTIES
-                TIMEOUT 5
+                TIMEOUT ${DEFAULT_TEST_TIMEOUT}
                 FIXTURES_REQUIRED ${TASK_NAME}) # Require successful build of TASK_NAME
     endforeach()
 endmacro()
