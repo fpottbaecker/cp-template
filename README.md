@@ -48,3 +48,21 @@ The sample tests are skipped if the build fails.
 >
 > `perform_test.sh` uses `diff`, `head` and `wc` (although the latter two are not strictly required).
 
+## Installing and Updating
+
+The simplest way to this up is to clone this repository.
+Then you can add this repository as upstream remote (`git remote add upstream REPO_URL`) and change the `origin` to your repository.
+
+If `upstream` is set up, you can `git pull upstream master` to update to the latest version.
+The template is structured such that, if at all possible, new features also apply to existing tasks.
+
+If you already have an existing repository, you can add this repository to its history:
+1. (optional) rename/move files you know will conflict
+2. `git remote add upstream REPO_URL`.
+3. `git pull --allow-unrelated-histories upstream master`.
+   This is most certain to result in conflicts, especially in `CMakeLists.txt`.
+   Mostly you can just pick the remote files in case of conflict, unless you know that you do not.
+   If you feel daring, you can specify `-s recursive -X theirs` to automatically pick remote files during merge.
+4. Incorporate your existing files by creating the appropriate contests and tasks and copying the respective source files.
+
+
