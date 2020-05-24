@@ -50,7 +50,7 @@ The sample tests are skipped if the build fails.
 
 ## Installing and Updating
 
-The simplest way to this up is to clone this repository.
+The simplest way to install this is to clone this repository.
 Then you can add this repository as upstream remote (`git remote add upstream REPO_URL`) and change the `origin` to your repository.
 
 If `upstream` is set up, you can `git pull upstream master` to update to the latest version.
