@@ -43,6 +43,8 @@ Program output is saved to `SAMPLE.result`, diff output (if any) is saved to `SA
 The sample tests are skipped if the build fails.
 
 > There are two test runner scripts, `perform_test.sh` for UNIX and `perform_test.cmake` for other platforms. `perform_test.sh` terminates itself with `SIGSEGV` to make `ctest` output `Exception` instead of `Failed` to allow for a quick distinction between run errors and wrong answers. `perform_test.cmake` does not have this capability, so both run errors and wrong answers are reported as `Failed`.
+>
 > `perform_test.cmake` uses `diff` to compare outputs, this might need to be changed based on the setup.
+>
 > `perform_test.sh` uses `diff`, `head` and `wc` (although the latter two are not strictly required).
 
