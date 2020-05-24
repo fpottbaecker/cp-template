@@ -25,7 +25,11 @@ int main(int argc, char** argv) {
     cin.tie(nullptr);
     cout.precision(10);
 
-
+    int t;
+    cin >> t;
+    for(int i = 0, i < t, ++i) {
+        cout << 1 << nl;
+    }
 
     return 0;
 }
