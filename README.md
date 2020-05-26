@@ -8,7 +8,7 @@ This is a mostly platform independent template, most scripts are written for CMa
 2. Run CMake, e.g. via `cmake -B cmake-build-debug .` (automatically done by CLion)
 3. Run `contests/add_contest NAME`
 4. Then, either
-    * Download `samples-TASK.zip` files and run `contest/NAME/load_tasks`, or
+    * Download `samples-TASK.zip` files to `contests/NAME` and run `contest/NAME/load_tasks`, or
     * Run `contest/NAME/add_task TASK`
 5. Write code (this is the important part)
 6. Run `ctest` in the tasks cmake binary directory (`cmake-build-debug/contests/NAME/TASK` if configured according to step 2) to test it
