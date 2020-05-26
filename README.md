@@ -35,7 +35,7 @@ Each task receives a build test (as testing is performed via a script, the test 
 For each `SAMPLE` of the task, a test is created which runs the task executable with `SAMPLE.in` as input and compares the output with `SAMPLE.out`.
 The test fails if:
 
-* the execution does not finish within 5 seconds (configurable in `common.cmake` in the `add_sample_tests` macro)
+* the execution does not finish within 5 seconds (configurable in `config.cmake`)
 * the executable exits with a non-zero exit code (usually a run error, error output is printed to console if using `--output-on-failure`)
 * the output does not match the desired output (wrong answer, diff output is printed to console if using `--output-on-failure`)
 
